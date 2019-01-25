@@ -1,0 +1,10 @@
+<view class='list'>
+  <view class='list-item'>
+    <view class='avatar'>
+      <image></image>
+    </view>
+    <view class='info'>
+      个人信息
+    </view>
+  </view>
+</view>
