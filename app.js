@@ -1,20 +1,13 @@
 //app.js
+const {updateSelf} = require('./service/index.js')
 App({
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        console.log('登录',res)
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    })
+    if(wx.getStorageInfoSync('token')){
+      updateSelf()
+    }
   },
   globalData: {
-    userInfo: null
+    userInfo: {},
+    isLogin: !!wx.getStorageSync('token')
   }
 })

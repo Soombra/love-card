@@ -7,7 +7,12 @@ function getFriends() {
 function addFriend (params) {
   return request.post(`${hosts.coupon}v1/friends`, { data: params})
 }
+function getSelf() {
+  return request.get(`${hosts.coupon}v1/self`)
+}
 
 module.exports = {
-  getFriends
+  getFriends,
+  addFriend,
+  getSelf
 }

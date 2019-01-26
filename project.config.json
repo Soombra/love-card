@@ -38,13 +38,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "分享落地",
 					"pathName": "pages/index/index",
 					"query": "inviter_id=1"
+				},
+				{
+					"id": -1,
+					"name": "分享落地页",
+					"pathName": "pages/me/index",
+					"query": "inviter_id=123123"
 				}
 			]
 		}
