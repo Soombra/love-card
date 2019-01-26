@@ -7,7 +7,6 @@ App({
     }
   },
   globalData: {
-    userInfo: {},
-    isLogin: !!wx.getStorageSync('token')
+    userInfo: {}
   }
 })

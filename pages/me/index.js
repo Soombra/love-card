@@ -3,13 +3,10 @@
 const {addFriend} = require('../../api/coupon.js')
 const app = getApp()
 const {updateSelf} = require('../../service/index.js')
-const {
-  login
-} = require('../../api/auth.js')
+const {login} = require('../../api/auth.js')
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -17,19 +14,23 @@ Page({
   },
   addFriend (){
     if(this.data.inviter_id){
-      addFriend({friend_id: this.data.inviter_id}).then(() => {
+      addFriend({friend_id: +this.data.inviter_id}).then(() => {
         console.log('添加成功')
       })
     }
   },
+  bindViewTap () {
+    wx.previewImage({
+      urls: [this.data.userInfo.avatar]
+    })
+  },
   onLoad (options) {
-    console.log('打印id', options.inviter_id)
     if (options.inviter_id) {
       this.setData({
         inviter_id: options.inviter_id
       })
     }
-    if (app.globalData.isLogin){
+    if (wx.getStorageSync('userInfo').user_id){
       this.addFriend()
     }
   },
@@ -47,15 +48,7 @@ Page({
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
-    let {
-      userInfo,
-      iv,
-      encryptedData
-    } = e.detail
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    let {userInfo,iv,encryptedData} = e.detail
     wx.login({
       success: (res) => {
         if (res.code) {
@@ -70,7 +63,6 @@ Page({
           }
           login(params).then((res) => {
             wx.setStorageSync('token', res.data.access_token)
-            wx.setStorageSync('id', res.data.user_id)
             updateSelf().then(() => {
               this.syncUserInfo()
             })
@@ -83,8 +75,7 @@ Page({
     })
   },
   onShareAppMessage() {
-    let inviter_id = wx.getStorageSync('id')
-    console.log('转发参数', inviter_id)
+    let inviter_id = this.data.userInfo.user_id
     return {
       title: '一般人我不分享的，用力点',
       path: 'pages/me/index?inviter_id=' + inviter_id,

@@ -5,7 +5,6 @@ let methods = ['get', 'post', 'put', 'delete']
 methods.forEach((item, index, arr) => {
   request[item] = (url, {headers, ...params} = {}) => {
     let header = headers || {}
-    console.log('请求前获取token', wx.getStorageSync('token'))
     header.Authorization = wx.getStorageSync('token') ? 'JWT ' + wx.getStorageSync('token') : basicToken
     return new Promise((resolve, reject) => {
       wx.request({

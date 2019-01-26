@@ -1,10 +1,15 @@
-<view class='list'>
-  <view class='list-item'>
-    <view class='avatar'>
-      <image></image>
+<view>
+  <view wx:if='{{friends.length}}' class='list'>
+    <view wx:for='{{friends}}' wx:for-item="item" class='list-item'>
+      <view class='avatar'>
+        <image src='{{item.avatar}}'></image>
+      </view>
+      <view class='info'>
+        {{item.nickname}}
+      </view>
     </view>
-    <view class='info'>
-      个人信息
-    </view>
+  </view>
+  <view wx:else class='list-empty'>
+    暂无好友
   </view>
 </view>
