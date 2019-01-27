@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/me/index"
+    "pages/me/index",
+    "pages/coupons",
+    "pages/coupon-detail"
   ],
   "tabBar": {
     "list": [

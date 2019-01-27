@@ -35,7 +35,9 @@ Page({
     }
   },
   onShow () {
-    this.syncUserInfo()
+    updateSelf().then(() => {
+      this.syncUserInfo()
+    })
   },
   syncUserInfo() {
     let userInfo = wx.getStorageSync('userInfo')

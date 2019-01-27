@@ -1,0 +1,9 @@
+<!--pages/coupons.wxml-->
+<view class='coupons'>
+  <view class='coupon-list'>
+    <navigator url='/pages/coupon-detail'>
+      <view class='coupon-name'>这是券名字</view>
+      <view class='des'>这是券简介（非详细描述）</view>
+    </navigator>
+  </view>
+</view>
