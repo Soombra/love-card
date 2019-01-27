@@ -1,0 +1,31 @@
+<view class='give-layer'>
+  <view class='layer-wrapper'></view>
+  <view class='layer-main'>
+    <view class='layer-title'>
+      赠送给 {{friend.nickname}}
+      <view class='btn-close' bindtap='handleClose'>x</view>  
+    </view>
+    <view class='coupon-option'>
+      <text>标题：</text>
+      <input focus='true' data-name='title' value='{{title}}' bindinput='handleInput'></input>
+    </view>
+    <view class='coupon-option'>
+      <text>数量：</text>
+      <input type='number' data-name='count' value='{{count}}'  bindinput='handleInput'></input>
+    </view>
+    <view class='coupon-option'>
+      <text>起止时间(未选择表示长期有效)：</text>
+      <view class='picker-wrapper'>
+        <picker mode='date' data-name='date_start' value='{{date_start}}'  class='date-picker' bindchange='handleInput'>选择开始日期 {{date_start}}</picker>
+        <picker mode='date' data-name='date_end' value='{{date_end}}'  class='date-picker' bindchange='handleInput'>选择结束日期 {{date_end}}</picker>
+      </view>
+    </view>
+    <view class='coupon-option'>
+      <text>使用说明：</text>
+      <textarea data-name='remark' value='{{remark}}'  bindinput='handleInput'></textarea>
+    </view>
+    <view class='btn-confirm'>
+      <label bindtap='handleSubmit'>确定</label>
+    </view>
+  </view>
+</view>

@@ -12,7 +12,13 @@ methods.forEach((item, index, arr) => {
         ...params,
         method: item.toUpperCase(),
         header,
-        success: (res) => resolve(res),
+        success: (res) => {
+          if (parseInt(res.statusCode / 100) === 2){
+            resolve(res)
+          } else {
+            reject(res)
+          }
+        },
         fail: (err) => reject(err)
       })
     })

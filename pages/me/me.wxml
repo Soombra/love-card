@@ -5,8 +5,8 @@
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickname}}</text>
-      <view class='info-item'><navigator url='/pages/coupons?type=gifts'>我收到的券</navigator></view>
-      <view class='info-item'><navigator url='/pages/coupons?type=offers'>我赠送的券</navigator></view>
+      <view class='info-item'><navigator url='/pages/coupons/coupons?type=gifts'>我收到的券</navigator></view>
+      <view class='info-item'><navigator url='/pages/coupons/coupons?type=offers'>我赠送的券</navigator></view>
     </block>
   </view>
 </view>

@@ -1,15 +1,19 @@
 <view>
   <view wx:if='{{friends.length}}' class='list'>
-    <view wx:for='{{friends}}' wx:for-item="item" class='list-item'>
-      <view class='avatar'>
-        <image src='{{item.avatar}}'></image>
+    <view wx:for='{{friends}}' wx:for-item="item" wx:key="item.user_id" class='list-item'>
+      <view class='main'>
+        <view class='avatar'>
+          <image src='{{item.avatar}}'></image>
+        </view>
+        <view class='info'>
+          {{item.nickname}}
+        </view>
       </view>
-      <view class='info'>
-        {{item.nickname}}
-      </view>
+      <view class='give' data-friend='{{item}}' bindtap='handleGive'>赠</view>
     </view>
   </view>
   <view wx:else class='list-empty'>
     暂无好友
   </view>
+  <give-layer friend="{{selectedFriend}}" wx:if = '{{showLayer}}' bind:close='closeLayer'/>
 </view>

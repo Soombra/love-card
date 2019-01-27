@@ -5,22 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // friends: [{
-    //   avatar: 'https://medias.zaih.com/Fr7M0DUo3zxkdqLd1q1jL38GPqpf',
-    //   nickname: '测试名字1'
-    // }, {
-    //   avatar: 'https://medias.zaih.com/4798cefa5994a22b4a60a9013c4d_670x320.png',
-    //   nickname: '测试名字2'
-    // }, {
-    //   avatar: 'https://medias.zaih.com/7e9d918043f757fed321c822b879_1080x1920.png',
-    //   nickname: '测试名字3'
-    // }, {
-    //   avatar: 'https://medias.zaih.com/FqO7StTDdrZ0eRi8Q9nAIc6OMRfg',
-    //   nickname: '测试名字4'
-    // }],
-    friends: []
+    friends: [],
+    showLayer: false
   },
-
+  handleGive(e){
+    this.setData({
+      showLayer: true,
+      selectedFriend: e.currentTarget.dataset.friend
+    })
+  },
+  closeLayer(){
+    this.setData({
+      showLayer: false,
+      selectedFriend: {}
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
