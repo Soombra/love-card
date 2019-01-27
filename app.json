@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/me/index",
-    "pages/coupons",
-    "pages/coupon-detail"
+    "pages/me/me",
+    "pages/coupons/coupons",
+    "pages/coupon-detail/coupon-detail"
   ],
   "tabBar": {
     "list": [
@@ -14,7 +14,7 @@
         "selectedIconPath": "./assets/list-active.png"
       },
       {
-        "pagePath": "pages/me/index",
+        "pagePath": "pages/me/me",
         "text": "我的",
         "iconPath": "./assets/me.png",
         "selectedIconPath": "./assets/me-active.png"

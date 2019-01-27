@@ -80,7 +80,7 @@ Page({
     let inviter_id = this.data.userInfo.user_id
     return {
       title: '一般人我不分享的，用力点',
-      path: 'pages/me/index?inviter_id=' + inviter_id,
+      path: 'pages/me/me?inviter_id=' + inviter_id,
       imageUrl: ''
     }
   }
