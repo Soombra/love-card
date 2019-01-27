@@ -1,4 +1,4 @@
-// pages/coupons.js
+// pages/coupon-detail.js
 Page({
 
   /**
