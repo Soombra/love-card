@@ -11,23 +11,23 @@ function getSelf() {
   return request.get(`${hosts.coupon}v1/self`)
 }
 
-function giveCoupon(params) {
+function createCoupon(params) {
   return request.post(`${hosts.coupon}v1/gifts`, { data: params })
 }
 
-function getGifts(){
-  return request.get(`${hosts.coupon}v1/self/gifts`)
+function getSelfOffers() {
+  return request.get(`${hosts.coupon}v1/self/offers`)
 }
 
-function getOffers() {
-  return request.get(`${hosts.coupon}v1/self/offers`)
+function getSelfGifts() {
+  return request.get(`${hosts.coupon}v1/self/gifts`)
 }
 
 module.exports = {
   getFriends,
   addFriend,
   getSelf, 
-  giveCoupon,
-  getGifts,
-  getOffers
+  createCoupon,
+  getSelfOffers,
+  getSelfGifts
 }

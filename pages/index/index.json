@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "我的好友列表",
   "usingComponents": {
-    "give-layer": "/components/giveLayer/giveLayer"
   }
 }

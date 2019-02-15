@@ -1,4 +1,7 @@
-/**app.wxss**/ 
+/**app.wxss**/
+@import "icon.wxss";
+@import "colorui.wxss";
+
 page{
   box-sizing: border-box;
   padding: 40rpx;

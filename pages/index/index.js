@@ -1,4 +1,4 @@
-const {getFriends} = require('../../api/coupon.js')
+import {getFriends, createCoupon} from '../../api/coupon.js'
 Page({
 
   /**
@@ -6,19 +6,67 @@ Page({
    */
   data: {
     friends: [],
-    showLayer: false
+    showLayer: false,
+    showCreateCoupon : '',
+    date_start: '2019-02-01',
+    date_end: '2019-02-01',
+    friend_id: '',
+    title: '',
+    count: 0,
+    remark: ''
   },
-  handleGive(e){
+  showCreateCoupon(e){
+    console.log(e.currentTarget.dataset.friendId)
     this.setData({
-      showLayer: true,
-      selectedFriend: e.currentTarget.dataset.friend
+      showCreateCoupon: 'show',
+      friend_id: e.currentTarget.dataset.friendId
     })
   },
-  closeLayer(){
+  hideCreateCoupon(){
     this.setData({
-      showLayer: false,
-      selectedFriend: {}
+      showCreateCoupon: '',
     })
+  },
+  startDateChange (e) {
+    this.setData({
+      date_start: e.detail.value
+    })
+  },
+  endDateChange (e) {
+    this.setData({
+      date_end: e.detail.value
+    })
+  },
+  submitCoupon(){
+      let { title, count, remark, date_start, date_end } = this.data
+      if (!title || !count || !remark){
+        wx.showToast({
+          title: '您有未填写项',
+          icon: 'none'
+        })
+        return
+      }
+      createCoupon({
+        title,
+        remark,
+        date_start,
+        date_end,
+        count: +count,
+        friend_id: this.data.friend_id
+      }).then(res => {
+        console.log('赠送成功')
+        this.hideCreateCoupon()
+      }).catch(err =>{
+        wx.showToast({
+          title: '赠送失败，请稍后再试',
+          icon: 'none'
+        })
+      })
+    },
+  handleInput (e) {
+      let obj = {}
+      obj[e.currentTarget.dataset.name] = e.detail.value
+      this.setData(obj)
   },
   /**
    * 生命周期函数--监听页面加载

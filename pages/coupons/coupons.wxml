@@ -1,5 +1,23 @@
-<!--pages/coupons.wxml-->
-<view class='coupons'>
-  <coupon wx:for='{{coupons}}' wx:for-item='coupon' coupon='{{coupon}}'
-  wx:key="coupon.coupon.id"/>
+<view>
+    <view wx:if='{{coupons.length}}'>
+        <view wx:for='{{coupons}}' wx:for-item="item" wx:key="item.user_id">
+            <view class="cu-card article">
+                <view class="cu-item shadow">
+                    <view class="title">{{ item.coupon.title}}</view>
+                    <view class="content">
+                        <image src="{{ item.friend.avatar }}" mode="aspectFill"></image>
+                        <view class="desc">
+                            <view class='text-content'> {{ item.coupon.remark }}</view>
+                            <view class='text-right'>
+                                <view class='cu-tag bg-green light sm round'>{{ item.coupon.count }}次</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view wx:else class='list-empty'>
+        暂无人赠送
+    </view>
 </view>

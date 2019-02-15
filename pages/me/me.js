@@ -7,10 +7,17 @@ const {login} = require('../../api/auth.js')
 
 Page({
   data: {
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     inviter_id: ''
+  },
+  menuArrow: function (e) {
+    this.setData({
+      menuArrow: e.detail.value
+    });
   },
   addFriend (){
     if(this.data.inviter_id){
@@ -51,9 +58,6 @@ Page({
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
     let {userInfo,iv,encryptedData} = e.detail
-    wx.showLoading({
-      title: '登录中'
-    })
     wx.login({
       success: (res) => {
         if (res.code) {
@@ -68,20 +72,14 @@ Page({
           }
           login(params).then((res) => {
             wx.setStorageSync('token', res.data.access_token)
-            wx.hideLoading()
             updateSelf().then(() => {
               this.syncUserInfo()
             })
             this.addFriend()
           }).catch((err) => {
-            console.log('登录失败', err)
-            wx.hideLoading()
+            console.log('请求失败', err)
           })
         }
-      },
-      fail(err){
-        wx.hideLoading()
-        console.log(err)
       }
     })
   },

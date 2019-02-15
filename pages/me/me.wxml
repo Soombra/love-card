@@ -1,12 +1,24 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo"   bindgetuserinfo="getUserInfo"> 请点击登录 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatar}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickname}}</text>
-      <view class='info-item'><navigator hover-class="none" url='/pages/coupons/coupons?type=gifts'>我收到的券</navigator></view>
-      <view class='info-item'><navigator hover-class="none" url='/pages/coupons/coupons?type=offers'>我赠送的券</navigator></view>
-    </block>
-  </view>
-</view>
+<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 请点击登录</button>
+<block wx:else>
+    <view class="flex solid-bottom padding justify-center">
+        <view class="cu-avatar round xl margin-xs" style="background-image:url({{userInfo.avatar}});">
+            <view class="cu-tag badge icon-{{ userInfo.gender }} bg-blue"></view>
+        </view>
+    </view>
+    <view class="cu-list menu card-menu margin-top">
+        <view class="cu-item arrow">
+            <navigator class='content' hover-class='none' url='/pages/coupons/coupons?type=gifts' open-type="navigate">
+                <text class='icon-ticket text-orange'></text>
+                <text class='text-grey'>我收到的券</text>
+            </navigator>
+        </view>
+        <view class="cu-item arrow">
+            <navigator class='content' hover-class='none' url='/pages/coupons/coupons?type=offers' open-type="navigate">
+                <text class='icon-goodsnewfill text-orange'></text>
+                <text class='text-grey'>我赠送的券</text>
+            </navigator>
+        </view>
+    </view>
+</block>
+
