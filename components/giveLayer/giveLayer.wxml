@@ -7,11 +7,11 @@
     </view>
     <view class='coupon-option'>
       <text>标题：</text>
-      <input focus='true' data-name='title' value='{{title}}' bindinput='handleInput'></input>
+      <input focus='true' placeholder='请输入标题，必填' placeholder-class='placeholder' data-name='title' value='{{title}}' bindinput='handleInput'></input>
     </view>
     <view class='coupon-option'>
       <text>数量：</text>
-      <input type='number' data-name='count' value='{{count}}'  bindinput='handleInput'></input>
+      <input type='number' placeholder='请输入数量，必填' placeholder-class='placeholder' data-name='count' value='{{count}}'  bindinput='handleInput'></input>
     </view>
     <view class='coupon-option'>
       <text>起止时间(未选择表示长期有效)：</text>
@@ -22,7 +22,7 @@
     </view>
     <view class='coupon-option'>
       <text>使用说明：</text>
-      <textarea data-name='remark' value='{{remark}}'  bindinput='handleInput'></textarea>
+      <textarea data-name='remark' placeholder='请输入详细使用规则，必填' placeholder-class='placeholder' value='{{remark}}'  bindinput='handleInput'></textarea>
     </view>
     <view class='btn-confirm'>
       <label bindtap='handleSubmit'>确定</label>

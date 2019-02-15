@@ -51,6 +51,9 @@ Page({
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
     let {userInfo,iv,encryptedData} = e.detail
+    wx.showLoading({
+      title: '登录中'
+    })
     wx.login({
       success: (res) => {
         if (res.code) {
@@ -65,14 +68,20 @@ Page({
           }
           login(params).then((res) => {
             wx.setStorageSync('token', res.data.access_token)
+            wx.hideLoading()
             updateSelf().then(() => {
               this.syncUserInfo()
             })
             this.addFriend()
           }).catch((err) => {
-            console.log('请求失败', err)
+            console.log('登录失败', err)
+            wx.hideLoading()
           })
         }
+      },
+      fail(err){
+        wx.hideLoading()
+        console.log(err)
       }
     })
   },

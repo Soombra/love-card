@@ -44,7 +44,13 @@
 					"id": 0,
 					"name": "分享落地页",
 					"pathName": "pages/me/me",
-					"query": "inviter_id=52012347"
+					"query": "inviter_id=52012351"
+				},
+				{
+					"id": -1,
+					"name": "收到的券",
+					"pathName": "pages/coupons/coupons",
+					"query": "type=gifts"
 				}
 			]
 		}

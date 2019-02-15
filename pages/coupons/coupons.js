@@ -1,4 +1,4 @@
-// pages/coupons.js
+const {getGifts, getOffers} = require('../../api/coupon.js')
 Page({
 
   /**
@@ -6,18 +6,32 @@ Page({
    */
   data: {
     coupons: [],
+    type: '',
     typeDict: {
       'gifts': '我收到的券',
       'offers': '我赠送的券'
     }
+  },
+  getList () {
+    let func = this.data.type === 'gifts' ? getGifts : getOffers
+    func().then(res => {
+      this.setData({
+        coupons: res.data
+      })
+    }).catch(err => {
+      console.log(err)
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      type: options.type
+    })
     wx.setNavigationBarTitle({
-      title: this.data.typeDict[options.type]
+      title: this.data.typeDict[this.data.type]
     })
   },
 
@@ -32,7 +46,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getList()
   },
 
   /**

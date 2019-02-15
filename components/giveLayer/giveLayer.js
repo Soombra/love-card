@@ -18,7 +18,8 @@ Component({
     count: '',
     remark: '',
     date_start: '',
-    date_end: ''
+    date_end: '',
+    requesting: false
   },
 
   /**
@@ -35,11 +36,20 @@ Component({
       this.triggerEvent('close')
     },
     handleSubmit(){
+      if(this.data.requesting){
+        return
+      }
+      this.setData({
+        requesting: true
+      })
       let { title, count, remark, date_start, date_end } = this.data
       if (!title || !count || !remark){
         wx.showToast({
           title: '您有未填写项',
           icon: 'none'
+        })
+        this.setData({
+          requesting: false
         })
         return
       }
@@ -53,9 +63,15 @@ Component({
         friend_id: this.properties.friend.user_id
       }).then(res => {
         console.log('赠送成功')
+        this.setData({
+          requesting: false
+        })
         this.handleClose()
       }).catch(err =>{
         console.log(err)
+        this.setData({
+          requesting: false
+        })
         wx.showToast({
           title: '赠送失败，请稍后再试',
           icon: 'none'

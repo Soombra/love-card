@@ -15,9 +15,19 @@ function giveCoupon(params) {
   return request.post(`${hosts.coupon}v1/gifts`, { data: params })
 }
 
+function getGifts(){
+  return request.get(`${hosts.coupon}v1/self/gifts`)
+}
+
+function getOffers() {
+  return request.get(`${hosts.coupon}v1/self/offers`)
+}
+
 module.exports = {
   getFriends,
   addFriend,
   getSelf, 
-  giveCoupon
+  giveCoupon,
+  getGifts,
+  getOffers
 }
